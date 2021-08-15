@@ -2,8 +2,8 @@ import React, {useState,useEffect} from 'react';
 import CardComponent from './card-component';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getCardType } from '../utils/cardTypes';
-import { tSExpressionWithTypeArguments } from '@babel/types';
+// import { getCardType } from '../utils/cardTypes';
+// import { tSExpressionWithTypeArguments } from '@babel/types';
 import CvvComponent from './cvv-component';
 
 
@@ -60,7 +60,6 @@ export default function FormComponent (props) {
         break;
       }
     }
-    console.log(payCardType)
         if (payCardType){
             setCard(payCardType)
         }else{
