@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState} from 'react';
 import CardComponent from './card-component';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -43,7 +43,7 @@ export default function FormComponent (props) {
     function changeNumber(event){
         let num = number.current.value;
         num =num.replace(/ /g, "");
-        if (((num.length) % 4 == 0 && num.length > 0 ) && num.length !== 16 ){
+        if (((num.length) % 4 === 0 && num.length > 0 ) && num.length !== 16 ){
             number.current.value = String(number.current.value+" ")
         }
         var payCardType = "";
@@ -67,9 +67,10 @@ export default function FormComponent (props) {
         }
         let def = ["#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#"]
         
-        num?.split('').map((value,index) => {
+        num.split('').map((value,index) => {
 
             def[index] = value
+            return
         })
         setCardNumber(def)
     }

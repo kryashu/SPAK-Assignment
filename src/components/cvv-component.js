@@ -1,5 +1,4 @@
 import React, {useState,useEffect} from 'react';
-import chip from '../public/assets/images/chip.png';
 import visa from '../public/assets/images/visa.png';
 import amex from '../public/assets/images/amex.png';
 import dinersclub from '../public/assets/images/dinersclub.png';
