@@ -11,6 +11,7 @@ import unionpay from '../public/assets/images/unionpay.png';
 
 
 export default function CardComponent(props) {
+    const [cardIndex, setCardIndex] = useState('')
     const [cardNumber, setCardNumber] = useState(["#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#"]);
     const [cardHolder, setCardHolder] = useState("AD SOYAD")
     const [card, setCard] = useState("Visa")
@@ -42,6 +43,16 @@ export default function CardComponent(props) {
     }
 
     useEffect(() => {
+        // if (cardNumber !== props.cardNumber){
+        //     props.cardNumber.map((value,index) => {
+        //         if (props.cardNumber[index + 1] === "#" || index === props.cardNumber.length - 1){
+        //             setCardIndex(index)
+        //         }
+        //     })
+        // }
+        
+
+
         setCardNumber(props.cardNumber)
         setCardHolder(props.cardHolder)
         if (props.cardHolder == ""){

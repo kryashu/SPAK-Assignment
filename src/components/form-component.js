@@ -41,10 +41,20 @@ export default function FormComponent (props) {
 }
     
     function changeNumber(event){
+        
+            
+        var validkeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+            if (validkeys.indexOf(event.key) < 0){
+                number.current.value = 	
+                number.current.value.substring(0, number.current.value.length - 1);
+                return
+        }
         let num = number.current.value;
         num =num.replace(/ /g, "");
-        if (((num.length) % 4 === 0 && num.length > 0 ) && num.length !== 16 ){
+
+        if (((num.length) % 4 === 0 && num.length > 0 ) && num.length !== 16 && event.key !== "Backspace"){
             number.current.value = String(number.current.value+" ")
+
         }
         var payCardType = "";
     var regexMap = [
@@ -93,10 +103,22 @@ export default function FormComponent (props) {
         currDate[4]= currYear[3]
         setDate(currDate.join().replace (/,/g, ""))
     }
-    function changeCvv(){
+function cvvValid(event){
+    var validkeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+            if (validkeys.indexOf(event.key) < 0 && cvv.current.value.length <4){
+                cvv.current.value = 	
+                cvv.current.value.substring(0, cvv.current.value.length - 1).replace(/[^0-9\.]/g,'');
+                return
+        }
         let currName = cvv.current.value;
         setCvv(currName)
-    }
+}
+
+    // function changeCvv(event){
+        
+    //     // let currName = cvv.current.value;
+    //     // setCvv(currName)
+    // }
 
 
     function submit(flag,event){
@@ -123,7 +145,7 @@ export default function FormComponent (props) {
             <div class="card-body mar-top">
                 <div>
                 <span className="label">Card Number</span>
-                <input class="form-control form-control-lg" type="text" ref={number} onChange={ev => changeNumber(ev)} maxLength="19" onFocus={ev => { 
+                <input class="form-control form-control-lg" type="text" ref={number} onKeyUpCapture={ev => changeNumber(ev)} maxLength="19" onFocus={ev => { 
                                 if (focus === "cvv"){
                                    let element = document.getElementById("cardCvv")
                                    animateCSS(element, "flipInY")
@@ -186,7 +208,7 @@ export default function FormComponent (props) {
                     <div className="col-3">
                         <div>
                             <span className="lable">CVV</span>
-                            <input className="form-control form-control-lg" maxLength="4" type="text" pattern="\d*" ref={cvv} onInput={ev => changeCvv(ev)} onFocus={ev => {if (focus !== "cvv"){
+                            <input className="form-control form-control-lg" maxLength="4" type="text" pattern="\d*" ref={cvv}  onKeyUpCapture={ev => cvvValid(ev)} onFocus={ev => {if (focus !== "cvv"){
                                    let element = document.getElementById("cardCvv")
                                    animateCSS(element, "flipInY")
                                 }setFocus("cvv")}}></input>
